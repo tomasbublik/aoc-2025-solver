@@ -146,12 +146,12 @@ async function main() {
 
         const result = await callOpenAISolver(day, inputText, statementText);
 
-        // Uložit Kotlin kód
+        // Save Kotlin code
         const kotlinPath = path.join("solutions", `Day${day.toString().padStart(2, "0")}.kt`);
         fs.writeFileSync(kotlinPath, result.kotlinCode, { encoding: "utf-8" });
         console.log(`Saved Kotlin solution to ${kotlinPath}`);
 
-        // Uložit i JSON s metadaty
+        // Save JSON with metadata
         const jsonPath = path.join("solutions", `day${day.toString().padStart(2, "0")}.json`);
         fs.writeFileSync(jsonPath, JSON.stringify(result, null, 2), { encoding: "utf-8" });
         console.log(`Saved metadata to ${jsonPath}`);

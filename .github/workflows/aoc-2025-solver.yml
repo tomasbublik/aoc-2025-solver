@@ -40,7 +40,7 @@ jobs:
         run: |
           npx ts-node src/aoc_solver.ts
 
-      # volitelný commit a push
+      # Optional commit and push
       - name: Commit and push results
         if: success()
         env:
