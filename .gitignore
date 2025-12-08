@@ -27,3 +27,11 @@ yarn-error.log*
 
 # Testing
 coverage/
+
+# AoC inputs and solutions
+inputs/
+solutions/
+
+# Compiled Kotlin JARs
+*.jar
+

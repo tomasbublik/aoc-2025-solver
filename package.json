@@ -7,14 +7,21 @@
     "build": "tsc",
     "start": "node dist/aoc_solver.js",
     "dev": "tsc && node dist/aoc_solver.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "solve": "ts-node src/aoc_solver.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
+  "dependencies": {
+    "openai": "^4.73.0",
+    "axios": "^1.7.0",
+    "cheerio": "^1.0.0-rc.12"
+  },
   "devDependencies": {
     "@types/node": "^24.10.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   }
 }
