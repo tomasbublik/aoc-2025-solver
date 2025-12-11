@@ -1,11 +1,11 @@
-name: Advent of Code 2025 solver (TS)
+name: Advent of Code 2025 Solver (TypeScript)
 
 on:
-  # každý den 23:01 UTC => 00:01 CET (půlnoc + 1 minuta v českém čase)
-  # běží 30.11.-11.12. UTC, což odpovídá 1.12.-12.12. CET
+  # Daily at 5:00 UTC => 6:00 CET (6am Central European Time)
+  # Runs from 30 Nov to 11 Dec UTC, which corresponds to 1-12 Dec CET
   schedule:
-    - cron: "1 23 30 11 *"
-    - cron: "1 23 1-11 12 *"
+    - cron: "0 5 30 11 *"
+    - cron: "0 5 1-11 12 *"
   workflow_dispatch:
     inputs:
       day_override:
@@ -20,13 +20,26 @@ jobs:
       YEAR: "2025"
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+
+      - name: Set up Java (required for Kotlin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Install Kotlin compiler
+        run: |
+          curl -s https://get.sdkman.io | bash
+          source "$HOME/.sdkman/bin/sdkman-init.sh"
+          sdk install kotlin
+          echo "$HOME/.sdkman/candidates/kotlin/current/bin" >> $GITHUB_PATH
 
       - name: Install dependencies
         run: |
@@ -40,7 +53,7 @@ jobs:
         run: |
           npx ts-node src/aoc_solver.ts
 
-      # Optional commit and push
+      # Optional: commit and push results
       - name: Commit and push results
         if: success()
         env:
